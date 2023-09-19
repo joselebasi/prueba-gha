@@ -1,5 +1,7 @@
+
+name: Docker HUB config
+run-name: Workflow Docker HUB config
 on: push
-name: deploy
 jobs:
   docker:
     runs-on: ubuntu-latest
