@@ -20,10 +20,10 @@ jobs:
       - name: Login to Azure Container Registry
         uses: azure/docker-login@v1
         with:
-          login-server: crjitm.azurecr.io
+          login-server: ${{secrets.ACR_REGISTRY_NAME}}
           username: ${{secrets.ACR_USERNAME}}
           password: ${{secrets.ACR_PASSWORD}}              
       - name: Build and push
         run: |
-          docker build . -t crjitm.azurecr.io/prueba-gh:${{ github.sha }}
-          docker push crjitm.azurecr.io/prueba-gh:${{ github.sha }}
+          docker build . -t ${{secrets.ACR_REGISTRY_NAME}}/prueba-gh:${{ github.sha }}
+          docker push ${{secrets.ACR_REGISTRY_NAME}}/prueba-gh:${{ github.sha }}
