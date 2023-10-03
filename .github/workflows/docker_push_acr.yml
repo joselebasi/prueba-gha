@@ -26,4 +26,4 @@ jobs:
       - name: Build and push
         run: |
           docker build . -t crjitm.azurecr.io/prueba-gh:${{ github.sha }}
-          docker push crjitm.azurecr.ioo/prueba-gh:${{ github.sha }}
+          docker push crjitm.azurecr.io/prueba-gh:${{ github.sha }}
