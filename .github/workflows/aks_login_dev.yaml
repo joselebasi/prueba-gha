@@ -1,6 +1,6 @@
 
-name: AKS config
-run-name: Workflow AKS config
+name: AKS config dev
+run-name: Workflow AKS config dev
 on:
   workflow_dispatch:
   push:
