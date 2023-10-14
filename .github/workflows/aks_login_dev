@@ -1,0 +1,32 @@
+
+name: AKS config
+run-name: Workflow AKS config
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
+
+         - uses: Azure/docker-login@v1
+           with:
+              login-server: ${{secrets.ACR_REGISTRY_NAME}}
+              username: ${{secrets.ACR_USERNAME}}
+              password: ${{secrets.ACR_PASSWORD}}
+
+         - run: |
+            docker build . -t ${{secrets.ACR_REGISTRY_NAME}}/prueba-gh:${{ github.sha }}
+            docker push ${{secrets.ACR_REGISTRY_NAME}}/prueba-gh:${{ github.sha }}
+
+         - uses: azure/setup-kubectl@v2.0
+
+         # Set the target AKS cluster.
+         - uses: Azure/aks-set-context@v1
+           with:
+              creds: '${{ secrets.AZURE_CREDENTIALS_DEV }}'
+              cluster-name:OXZAKSAPPPTLDEV01
+              resource-group: OXZRGAPPPTLDEV
