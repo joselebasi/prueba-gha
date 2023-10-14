@@ -27,6 +27,6 @@ jobs:
          # Set the target AKS cluster.
          - uses: Azure/aks-set-context@v1
            with:
-              creds: '${{ secrets.AZURE_CREDENTIALS_DEV }}'
+              creds: '${{ secrets.AZURE_CREDENTIALS}}'
               cluster-name: OXZAKSAPPPTLDEV01
               resource-group: OXZRGAPPPTLDEV
